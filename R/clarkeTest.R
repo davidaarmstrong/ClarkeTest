@@ -57,11 +57,9 @@ print.nonnest.test <- function(x, digits = x$digits, ...)
 #' written for different classes of models.
 #'
 ##' @usage clarke_test(model1, model2, level=0.05, digits=2)
-##' @param model1 A fitted statistical model of class \code{"game"},
-##' \code{"lm"}, or \code{"glm"}
-##' @param model2 A fitted statistical model of class \code{"game"},
-##' \code{"lm"}, or \code{"glm"} whose dependent variable is the same as that of
-##' \code{model1}
+##' @param model1 A fitted statistical model of a supported class
+##' @param model2 A fitted statistical model of a supported class
+##'  whose dependent variable is the same as that of \code{model1}
 ##' @param level Numeric: significance level for the test.
 ##' @param digits Integer: number of digits to print
 ##' @references Kevin Clarke.  2007.  "A Simple Distribution-Free Test for

@@ -7,12 +7,10 @@
 clarke_test(model1, model2, level=0.05, digits=2)
 }
 \arguments{
-\item{model1}{A fitted statistical model of class \code{"game"},
-\code{"lm"}, or \code{"glm"}}
+\item{model1}{A fitted statistical model of a supported class}
 
-\item{model2}{A fitted statistical model of class \code{"game"},
-\code{"lm"}, or \code{"glm"} whose dependent variable is the same as that of
-\code{model1}}
+\item{model2}{A fitted statistical model of a supported class
+whose dependent variable is the same as that of \code{model1}}
 
 \item{level}{Numeric: significance level for the test.}
 
