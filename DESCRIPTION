@@ -1,0 +1,13 @@
+Package: clarkeTest
+Type: Package
+Title: Distribution-free Test of Non-nested Models
+Version: 0.1.0
+Authors@R: person("Dave", "Armstrong", email="dave@quantoid.net", 
+  role=c("aut", "cre"))
+Description: A more modular version of the clarke function from the games 
+  package.  Much of the code has been adapted from the functions in the 
+  games packge. 
+License: GPL (>=2)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
