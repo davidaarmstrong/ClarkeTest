@@ -86,7 +86,8 @@ print.nonnest.test <- function(x, digits = x$digits, ...)
 clarke_test <- function(model1, model2, level = 0.05, digits = 2){
 
 ##' @importFrom  stats coef dnorm dpois family fitted.values hatvalues logLik
-##' model.frame model.response nobs pbinom pnorm residuals var weights
+##' model.frame model.response nobs pbinom pnorm residuals var weights dbinom
+##' fitted predict
 
     x <- nonnest(model1, model2)
 
@@ -202,6 +203,37 @@ indivLogLiks.clm <- function(model){
   return(ans)
 }
 
+##' @rdname indivLogLiks
+##' @export
+##' @method indivLogLiks multinom
+indivLogLiks.multinom <- function(model){
+  y <- as.numeric(model.response(model.frame(model)))
+  probs <- predict(model, type="probs")
+  probs <- probs[cbind(1:length(y), y)]
+  ans <- log(probs)
+  return(ans)
+}
+
+##' @rdname indivLogLiks
+##' @export
+##' @method indivLogLiks mlogit
+indivLogLiks.mlogit <- function(model){
+  probs <- fitted(model)
+  ans <- log(probs)
+  return(ans)
+}
+
+##' @rdname indivLogLiks
+##' @export
+##' @method indivLogLiks negbin
+indivLogLiks.negbin <- function(model){
+  y <- model.response(model.frame(mod))
+  yhat <- fitted(mod)
+  probs <- dnbinom(y, size=model$theta, mu=yhat)
+  ans <- log(probs)
+  return(ans)
+}
+
 
 ll_fun.binomial <- function(model){
   y <- model.response(model.frame(model))
@@ -264,3 +296,25 @@ nparams.polr <- function(model){
 nparams.clm <- function(model){
   length(coef(model))
 }
+
+##' @rdname nparams
+##' @method nparams multinom
+##' @export
+nparams.multinom <- function(model){
+  length(c(coef(model)))
+}
+
+##' @rdname nparams
+##' @method nparams mlogit
+##' @export
+nparams.mlogit <- function(model){
+  length(coef(model))
+}
+
+##' @rdname nparams
+##' @method nparams negbin
+##' @export
+nparams.negbin <- function(model){
+  length(coef(model)) + 1
+}
+

@@ -6,6 +6,9 @@
 \alias{nparams.lm}
 \alias{nparams.polr}
 \alias{nparams.clm}
+\alias{nparams.multinom}
+\alias{nparams.mlogit}
+\alias{nparams.negbin}
 \title{Find number of parameters in model}
 \usage{
 nparams(model)
@@ -17,6 +20,12 @@ nparams(model)
 \method{nparams}{polr}(model)
 
 \method{nparams}{clm}(model)
+
+\method{nparams}{multinom}(model)
+
+\method{nparams}{mlogit}(model)
+
+\method{nparams}{negbin}(model)
 }
 \arguments{
 \item{model}{A statistical model object.}

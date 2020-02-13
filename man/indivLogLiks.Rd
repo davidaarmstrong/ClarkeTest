@@ -6,6 +6,9 @@
 \alias{indivLogLiks.lm}
 \alias{indivLogLiks.polr}
 \alias{indivLogLiks.clm}
+\alias{indivLogLiks.multinom}
+\alias{indivLogLiks.mlogit}
+\alias{indivLogLiks.negbin}
 \title{Calculate individual log-likelihood values}
 \usage{
 indivLogLiks(model)
@@ -17,6 +20,12 @@ indivLogLiks(model)
 \method{indivLogLiks}{polr}(model)
 
 \method{indivLogLiks}{clm}(model)
+
+\method{indivLogLiks}{multinom}(model)
+
+\method{indivLogLiks}{mlogit}(model)
+
+\method{indivLogLiks}{negbin}(model)
 }
 \arguments{
 \item{model}{A statistical model object.}
