@@ -261,6 +261,7 @@ ll_fun.gaussian <- function(model){
 ##'
 ##' @param model A statistical model object.
 ##'
+##' @return A scalar giving the number of parameters estimated in the model.
 ##' @rdname nparams
 ##' @export
 

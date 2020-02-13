@@ -30,6 +30,9 @@ nparams(model)
 \arguments{
 \item{model}{A statistical model object.}
 }
+\value{
+A scalar giving the number of parameters estimated in the model.
+}
 \description{
 Find number of parameters in model
 }
