@@ -4,6 +4,8 @@
 \alias{nparams}
 \alias{nparams.glm}
 \alias{nparams.lm}
+\alias{nparams.polr}
+\alias{nparams.clm}
 \title{Find number of parameters in model}
 \usage{
 nparams(model)
@@ -11,6 +13,10 @@ nparams(model)
 \method{nparams}{glm}(model)
 
 \method{nparams}{lm}(model)
+
+\method{nparams}{polr}(model)
+
+\method{nparams}{clm}(model)
 }
 \arguments{
 \item{model}{A statistical model object.}

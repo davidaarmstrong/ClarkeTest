@@ -4,6 +4,8 @@
 \alias{indivLogLiks}
 \alias{indivLogLiks.glm}
 \alias{indivLogLiks.lm}
+\alias{indivLogLiks.polr}
+\alias{indivLogLiks.clm}
 \title{Calculate individual log-likelihood values}
 \usage{
 indivLogLiks(model)
@@ -11,6 +13,10 @@ indivLogLiks(model)
 \method{indivLogLiks}{glm}(model)
 
 \method{indivLogLiks}{lm}(model)
+
+\method{indivLogLiks}{polr}(model)
+
+\method{indivLogLiks}{clm}(model)
 }
 \arguments{
 \item{model}{A statistical model object.}

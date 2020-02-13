@@ -10,4 +10,4 @@ Description: A more modular version of the clarke function from the games
 License: GPL (>=2)
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2

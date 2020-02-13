@@ -182,6 +182,27 @@ indivLogLiks.lm <- function(model){
   return(ans)
 }
 
+##' @rdname indivLogLiks
+##' @export
+##' @method indivLogLiks polr
+indivLogLiks.polr <- function(model){
+  y <- as.numeric(model.response(model.frame(model)))
+  probs <- predict(model, type="probs")
+  probs <- probs[cbind(1:length(y), y)]
+  ans <- log(probs)
+  return(ans)
+}
+
+##' @rdname indivLogLiks
+##' @export
+##' @method indivLogLiks clm
+indivLogLiks.clm <- function(model){
+  probs <- predict(model, type="prob")$fit
+  ans <- log(probs)
+  return(ans)
+}
+
+
 ll_fun.binomial <- function(model){
   y <- model.response(model.frame(model))
   probs <- ifelse(y == 1, fitted.values(model), 1-fitted.values(model))
@@ -230,3 +251,16 @@ nparams.lm <- function(model){
  sum(hatvalues(model))
 }
 
+##' @rdname nparams
+##' @method nparams polr
+##' @export
+nparams.polr <- function(model){
+  length(coef(model)) + length(model$zeta)
+}
+
+##' @rdname nparams
+##' @method nparams clm
+##' @export
+nparams.clm <- function(model){
+  length(coef(model))
+}
