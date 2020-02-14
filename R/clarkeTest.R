@@ -54,7 +54,19 @@ print.nonnest.test <- function(x, digits = x$digits, ...)
 #' `clarke_test` is a more modularized version of the [clarke()] function from
 #' the [games] package.  The main innovation is that the `nonnest` function
 #' calls a generic `indivLogLiks` function, so additional methods can be easily
-#' written for different classes of models.
+#' written for different classes of models. The function
+#' currently supports binomial, poisson and negative
+#' binomial GLMs, ordinal models estimated with either
+#' \code{\link{polr}} from the \code{\pkg{MASS}} package
+#' or \code{\link{clm}} from the \code{\pkg{ordinal}}
+#' package and multinomial models estimated with either
+#' \code{\link{multinom}} from the \code{\pkg{nnet}}
+#' package or \code{\link{mlogit}} from the
+#' \code{\pkg{mlogit}} package.  Users can also write new
+#' methods for both \code{indivLogLiks} and \code{nparams}
+#' that would get called by the generic function.
+#'
+#'
 #'
 ##' @usage clarke_test(model1, model2, level=0.05, digits=2)
 ##' @param model1 A fitted statistical model of a supported class
@@ -147,6 +159,21 @@ nonnest <- function(model1, model2){
 ##' Calculate individual log-likelihood values
 ##'
 ##' @param model A statistical model object.
+##'
+##' @details The \code{indivLogLiks} function calls
+##' the appropriate method for calculating individual
+##' log likelihood values for the model.  The function
+##' currently supports binomial, poisson and negative
+##' binomial GLMs, ordinal models estimated with either
+##' \code{\link{polr}} from the \code{\pkg{MASS}} package
+##' or \code{\link{clm}} from the \code{\pkg{ordinal}}
+##' package and multinomial models estimated with either
+##' \code{\link{multinom}} from the \code{\pkg{nnet}}
+##' package or \code{\link{mlogit}} from the
+##' \code{\pkg{mlogit}} package.  Users can also write new
+##' methods for both \code{indivLogLiks} and \code{nparams}
+##' that would get called by the generic function.
+##'
 ##'
 ##' @rdname indivLogLiks
 ##' @export

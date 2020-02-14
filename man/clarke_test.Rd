@@ -40,7 +40,17 @@ of non-nested models.
 `clarke_test` is a more modularized version of the [clarke()] function from
 the [games] package.  The main innovation is that the `nonnest` function
 calls a generic `indivLogLiks` function, so additional methods can be easily
-written for different classes of models.
+written for different classes of models. The function
+currently supports binomial, poisson and negative
+binomial GLMs, ordinal models estimated with either
+\code{\link{polr}} from the \code{\pkg{MASS}} package
+or \code{\link{clm}} from the \code{\pkg{ordinal}}
+package and multinomial models estimated with either
+\code{\link{multinom}} from the \code{\pkg{nnet}}
+package or \code{\link{mlogit}} from the
+\code{\pkg{mlogit}} package.  Users can also write new
+methods for both \code{indivLogLiks} and \code{nparams}
+that would get called by the generic function.
 }
 \references{
 Kevin Clarke.  2007.  "A Simple Distribution-Free Test for

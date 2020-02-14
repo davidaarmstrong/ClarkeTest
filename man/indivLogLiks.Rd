@@ -33,3 +33,18 @@ indivLogLiks(model)
 \description{
 Calculate individual log-likelihood values
 }
+\details{
+The \code{indivLogLiks} function calls
+the appropriate method for calculating individual
+log likelihood values for the model.  The function
+currently supports binomial, poisson and negative
+binomial GLMs, ordinal models estimated with either
+\code{\link{polr}} from the \code{\pkg{MASS}} package
+or \code{\link{clm}} from the \code{\pkg{ordinal}}
+package and multinomial models estimated with either
+\code{\link{multinom}} from the \code{\pkg{nnet}}
+package or \code{\link{mlogit}} from the
+\code{\pkg{mlogit}} package.  Users can also write new
+methods for both \code{indivLogLiks} and \code{nparams}
+that would get called by the generic function.
+}
