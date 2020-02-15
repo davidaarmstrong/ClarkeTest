@@ -43,14 +43,97 @@ calls a generic `indivLogLiks` function, so additional methods can be easily
 written for different classes of models. The function
 currently supports binomial, poisson and negative
 binomial GLMs, ordinal models estimated with either
-\code{\link{polr}} from the \code{\pkg{MASS}} package
-or \code{\link{clm}} from the \code{\pkg{ordinal}}
+\code{polr} from the \code{MASS} package
+or \code{clm} from the \code{ordinal}
 package and multinomial models estimated with either
-\code{\link{multinom}} from the \code{\pkg{nnet}}
-package or \code{\link{mlogit}} from the
-\code{\pkg{mlogit}} package.  Users can also write new
+\code{multinom} from the \code{nnet}
+package or \code{mlogit} from the
+\code{mlogit} package.  Users can also write new
 methods for both \code{indivLogLiks} and \code{nparams}
 that would get called by the generic function.
+}
+\examples{
+data(conflictData)
+## Linear Model
+lm1 <- lm(riots ~ log(rgdpna_pc) + log(pop*1000) +
+    polity2, data=conflictData)
+lm2 <- lm(riots ~ rgdpna_pc + pop +
+    polity2, data=conflictData)
+clarke_test(lm1, lm2)
+
+## Binomial GLM
+glm1 <- glm(conflict_binary ~ log(rgdpna_pc) +
+          log(pop*1000) + polity2, data=conflictData,
+          family=binomial)
+glm2 <- glm(conflict_binary ~ rgdpna_pc + pop +
+          polity2, data=conflictData,
+          family=binomial)
+clarke_test(glm1, glm2)
+
+## Poisson GLM
+glm1a <- glm(riots ~ log(rgdpna_pc) +
+              log(pop*1000) + polity2,
+             data=conflictData,
+             family=poisson)
+glm2a <- glm(riots ~ rgdpna_pc + pop +
+              polity2, data=conflictData,
+            family=poisson)
+clarke_test(glm1a, glm2a)
+
+## Negative Binomial GLM
+library(MASS)
+glm1b <- glm.nb(riots ~ log(rgdpna_pc) +
+               log(pop*1000) + polity2,
+               data=conflictData)
+glm2b <- glm.nb(riots ~ rgdpna_pc + pop +
+               polity2, data=conflictData)
+clarke_test(glm1b, glm2b)
+
+## Ordered Logit: polr
+library(MASS)
+ol1 <- polr(as.factor(Amnesty) ~ log(rgdpna_pc) +
+                  log(pop*1000) + polity2,
+                data=conflictData)
+ol2 <- polr(as.factor(Amnesty) ~ scale(rgdpna_pc) +
+            scale(pop) + polity2,
+            data=conflictData)
+clarke_test(ol1, ol2)
+
+## Ordered Logit: clm
+library(ordinal)
+ol1a <- clm(as.factor(Amnesty) ~ log(rgdpna_pc) +
+              log(pop*1000) + polity2,
+            data=conflictData)
+ol2a <- clm(as.factor(Amnesty) ~ scale(rgdpna_pc) +
+            scale(pop) + polity2,
+            data=conflictData)
+clarke_test(ol1a, ol2a)
+
+## Multinomial Logit: multinom
+
+library(nnet)
+ml1 <- multinom(as.factor(Amnesty) ~ log(rgdpna_pc) +
+              log(pop*1000) + polity2,
+            data=conflictData)
+ml2 <- multinom(as.factor(Amnesty) ~ scale(rgdpna_pc) +
+              scale(pop) + polity2,
+            data=conflictData)
+clarke_test(ml1, ml2)
+
+
+## Multinomial Logit: multinom
+
+library(mlogit)
+mldat <- mlogit.data(conflictData, choice="Amnesty",
+                     shape="wide")
+ml1a <- mlogit(Amnesty ~1 | log(rgdpna_pc) +
+                  log(pop*1000) + polity2,
+                data=mldat)
+ml2a <- mlogit(Amnesty ~ 1 | scale(rgdpna_pc) +
+                  scale(pop) + polity2,
+                data=mldat)
+clarke_test(ml1a, ml2a)
+
 }
 \references{
 Kevin Clarke.  2007.  "A Simple Distribution-Free Test for
