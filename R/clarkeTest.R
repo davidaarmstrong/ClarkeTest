@@ -159,7 +159,7 @@ print.nonnest.test <- function(x, digits = x$digits, ...)
 ##' clarke_test(ml1, ml2)
 ##'
 ##'
-##' ## Multinomial Logit: multinom
+##' ## Multinomial Logit: mlogit
 ##'
 ##' library(mlogit)
 ##' mldat <- mlogit.data(conflictData, choice="Amnesty",
