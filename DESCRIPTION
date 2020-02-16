@@ -1,14 +1,15 @@
 Package: clarkeTest
 Type: Package
-Title: Distribution-free Test of Non-nested Models
+Title: Distribution-Free Tests of Non-Nested Models
 Version: 0.1.0
 Authors@R: c(person("Dave", "Armstrong", email="dave@quantoid.net", 
   role=c("aut", "cre")), 
   person("Brenton", "Kenkel", email="brenton.kenkel@@gmail.com", 
   role=c("aut")))
-Description: A more modular version of the clarke function from the games 
-  package.  Much of the code has been adapted from the functions in the 
-  games package. 
+Description: Implementation of Clarke's distribution-free test of
+  non-nested models.  Currently supported model classes are: 
+  lm, glm (binomial, poisson, negative binomial), polr (MASS), 
+  clm (ordinal), multinom (nnet) and mlogit (mlogit).
 Depends: R (>= 3.5.0)
 Suggests: MASS, ordinal, mlogit, nnet
 License: GPL (>=2)
