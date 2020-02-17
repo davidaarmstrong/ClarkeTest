@@ -11,7 +11,7 @@ Description: Implementation of Clarke's distribution-free test of
   lm(), glm() ('binomial', 'poisson', 'negative binomial' links), 
   polr() ('MASS'), clm() ('ordinal'), multinom() ('nnet') and 
   mlogit() ('mlogit').  For more information on the test, see 
-  Clarke (2007) <doi: \URL{https://doi.org/10.1093/pan/mpm004}>. 
+  Clarke (2007) <doi: 10.1093/pan/mpm004>. 
 Depends: R (>= 3.5.0)
 Suggests: MASS, ordinal, mlogit, nnet
 License: GPL (>=2)
