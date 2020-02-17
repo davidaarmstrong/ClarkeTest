@@ -7,9 +7,11 @@ Authors@R: c(person("Dave", "Armstrong", email="dave@quantoid.net",
   person("Brenton", "Kenkel", email="brenton.kenkel@@gmail.com", 
   role=c("aut")))
 Description: Implementation of Clarke's distribution-free test of
-  non-nested models.  Currently supported model classes are: 
-  lm, glm (binomial, poisson, negative binomial), polr (MASS), 
-  clm (ordinal), multinom (nnet) and mlogit (mlogit).
+  non-nested models.  Currently supported model functions are: 
+  lm(), glm() ('binomial', 'poisson', 'negative binomial' links), 
+  polr() ('MASS'), clm() ('ordinal'), multinom() ('nnet') and 
+  mlogit() ('mlogit').  For more information on the test, see 
+  Clarke (2007) <doi: \URL{https://doi.org/10.1093/pan/mpm004}>. 
 Depends: R (>= 3.5.0)
 Suggests: MASS, ordinal, mlogit, nnet
 License: GPL (>=2)
