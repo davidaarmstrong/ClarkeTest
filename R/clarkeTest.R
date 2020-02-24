@@ -60,8 +60,7 @@ print.nonnest.test <- function(x, digits = x$digits, ...)
 #' or \code{clm} from the \code{ordinal}
 #' package and multinomial models estimated with either
 #' \code{multinom} from the \code{nnet}
-#' package or \code{mlogit} from the
-#' \code{mlogit} package.  Users can also write new
+#' package.  Users can also write new
 #' methods for both \code{indivLogLiks} and \code{nparams}
 #' that would get called by the generic function.
 #'
@@ -161,16 +160,6 @@ print.nonnest.test <- function(x, digits = x$digits, ...)
 ##'
 ##' ## Multinomial Logit: multinom
 ##'
-##' library(mlogit)
-##' mldat <- mlogit.data(conflictData, choice="Amnesty",
-##'                      shape="wide")
-##' ml1a <- mlogit(Amnesty ~1 | log(rgdpna_pc) +
-##'                   log(pop*1000) + polity2,
-##'                 data=mldat)
-##' ml2a <- mlogit(Amnesty ~ 1 | scale(rgdpna_pc) +
-##'                   scale(pop) + polity2,
-##'                 data=mldat)
-##' clarke_test(ml1a, ml2a)
 ##'
 ##' @export
 ##' @author Brenton Kenkel (\email{brenton.kenkel@@gmail.com}) modified by
@@ -251,8 +240,7 @@ nonnest <- function(model1, model2){
 ##' or \code{clm} from the \code{ordinal}
 ##' package and multinomial models estimated with either
 ##' \code{multinom} from the \code{nnet}
-##' package or \code{mlogit} from the
-##' \code{mlogit} package.  Users can also write new
+##' package.  Users can also write new
 ##' methods for both \code{indivLogLiks} and \code{nparams}
 ##' that would get called by the generic function.
 ##'
@@ -323,14 +311,14 @@ indivLogLiks.multinom <- function(model){
   return(ans)
 }
 
-##' @rdname indivLogLiks
-##' @export
-##' @method indivLogLiks mlogit
-indivLogLiks.mlogit <- function(model){
-  probs <- fitted(model)
-  ans <- log(probs)
-  return(ans)
-}
+# ##' @rdname indivLogLiks
+# ##' @export
+# ##' @method indivLogLiks mlogit
+# indivLogLiks.mlogit <- function(model){
+#   probs <- fitted(model)
+#   ans <- log(probs)
+#   return(ans)
+# }
 
 ##' @rdname indivLogLiks
 ##' @export
@@ -414,12 +402,12 @@ nparams.multinom <- function(model){
   length(c(coef(model)))
 }
 
-##' @rdname nparams
-##' @method nparams mlogit
-##' @export
-nparams.mlogit <- function(model){
-  length(coef(model))
-}
+# ##' @rdname nparams
+# ##' @method nparams mlogit
+# ##' @export
+# nparams.mlogit <- function(model){
+#   length(coef(model))
+# }
 
 ##' @rdname nparams
 ##' @method nparams negbin
@@ -433,7 +421,7 @@ nobs.multinom <- function(object, ...){
   length(object$weights)
 }
 
-##' @method nobs mlogit
-nobs.mlogit <- function(object, ...){
-  length(object$fitted.values)
-}
+# ##' @method nobs mlogit
+# nobs.mlogit <- function(object, ...){
+#   length(object$fitted.values)
+# }

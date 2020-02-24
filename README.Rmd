@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 
 # clarkeTest <img src="man/figures/ct_sticker.png" align="right" alt="" width="120" />
 
-ClarkeTest makes doing tests of non-nested models easy and clear.  The main testing function currently supports models of class `lm`, `glm` (binomial, poisson and negative binomial), `polr`, `clm`, `multinom`, `mlogit`.  
+ClarkeTest makes doing tests of non-nested models easy and clear.  The main testing function currently supports models of class `lm`, `glm` (binomial, poisson and negative binomial), `polr`, `clm` and `multinom`.  
 
 The initial code came from the [`games`](https://github.com/brentonk/games) package which worked with strategic game models as well as binomial GLMs and linear models.  The impetus for making this package was to extend the classes of models that could be evaluated.  
 
@@ -38,11 +38,11 @@ nparams.clm <- function(model){
 }
 ```
 
-  - Additionally, the function uses the `nobs()` generic to find the number of observations.  If there is no `nobs()` method for the current model class, the user would have to write one of those, too.  Here is an example of the `nobs` method for `mlogit` objects. 
+  - Additionally, the function uses the `nobs()` generic to find the number of observations.  If there is no `nobs()` method for the current model class, the user would have to write one of those, too.  Here is an example of an `nobs` method for `multinom` objects. 
   
 ```{r, eval=FALSE}
-nobs.mlogit <- function(object, ...){
-  length(object$fitted.values)
+nobs.multinom <- function(object, ...){
+  length(object$weights)
 }
 ```
 

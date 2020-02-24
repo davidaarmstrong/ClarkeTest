@@ -47,8 +47,7 @@ binomial GLMs, ordinal models estimated with either
 or \code{clm} from the \code{ordinal}
 package and multinomial models estimated with either
 \code{multinom} from the \code{nnet}
-package or \code{mlogit} from the
-\code{mlogit} package.  Users can also write new
+package.  Users can also write new
 methods for both \code{indivLogLiks} and \code{nparams}
 that would get called by the generic function.
 }
@@ -123,16 +122,6 @@ clarke_test(ml1, ml2)
 
 ## Multinomial Logit: multinom
 
-library(mlogit)
-mldat <- mlogit.data(conflictData, choice="Amnesty",
-                     shape="wide")
-ml1a <- mlogit(Amnesty ~1 | log(rgdpna_pc) +
-                  log(pop*1000) + polity2,
-                data=mldat)
-ml2a <- mlogit(Amnesty ~ 1 | scale(rgdpna_pc) +
-                  scale(pop) + polity2,
-                data=mldat)
-clarke_test(ml1a, ml2a)
 
 }
 \references{

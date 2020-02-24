@@ -7,7 +7,6 @@
 \alias{indivLogLiks.polr}
 \alias{indivLogLiks.clm}
 \alias{indivLogLiks.multinom}
-\alias{indivLogLiks.mlogit}
 \alias{indivLogLiks.negbin}
 \title{Calculate individual log-likelihood values}
 \usage{
@@ -22,8 +21,6 @@ indivLogLiks(model)
 \method{indivLogLiks}{clm}(model)
 
 \method{indivLogLiks}{multinom}(model)
-
-\method{indivLogLiks}{mlogit}(model)
 
 \method{indivLogLiks}{negbin}(model)
 }
@@ -43,8 +40,7 @@ binomial GLMs, ordinal models estimated with either
 or \code{clm} from the \code{ordinal}
 package and multinomial models estimated with either
 \code{multinom} from the \code{nnet}
-package or \code{mlogit} from the
-\code{mlogit} package.  Users can also write new
+package.  Users can also write new
 methods for both \code{indivLogLiks} and \code{nparams}
 that would get called by the generic function.
 }

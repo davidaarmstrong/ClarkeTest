@@ -7,7 +7,6 @@
 \alias{nparams.polr}
 \alias{nparams.clm}
 \alias{nparams.multinom}
-\alias{nparams.mlogit}
 \alias{nparams.negbin}
 \title{Find number of parameters in model}
 \usage{
@@ -22,8 +21,6 @@ nparams(model)
 \method{nparams}{clm}(model)
 
 \method{nparams}{multinom}(model)
-
-\method{nparams}{mlogit}(model)
 
 \method{nparams}{negbin}(model)
 }
