@@ -13,6 +13,10 @@
 
 \item{...}{Other arguments passed down to print}
 }
+\value{
+Printed output that summarises the results of the
+\code{clarke_test} function.
+}
 \description{
-Print non-nested test results
+Prints results of the \code{clarke_test} function.
 }

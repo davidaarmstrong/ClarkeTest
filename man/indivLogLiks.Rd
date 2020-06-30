@@ -4,6 +4,7 @@
 \alias{indivLogLiks}
 \alias{indivLogLiks.glm}
 \alias{indivLogLiks.lm}
+\alias{indivLogLiks.orlm}
 \alias{indivLogLiks.polr}
 \alias{indivLogLiks.clm}
 \alias{indivLogLiks.multinom}
@@ -16,6 +17,8 @@ indivLogLiks(model)
 
 \method{indivLogLiks}{lm}(model)
 
+\method{indivLogLiks}{orlm}(model)
+
 \method{indivLogLiks}{polr}(model)
 
 \method{indivLogLiks}{clm}(model)
@@ -26,6 +29,9 @@ indivLogLiks(model)
 }
 \arguments{
 \item{model}{A statistical model object.}
+}
+\value{
+A vector of individual log-likelihood values for the model.
 }
 \description{
 Calculate individual log-likelihood values
@@ -43,4 +49,7 @@ package and multinomial models estimated with either
 package.  Users can also write new
 methods for both \code{indivLogLiks} and \code{nparams}
 that would get called by the generic function.
+
+For the purposes of the \code{clarke_test} function, the \code{indivLogLiks}
+functions are not intended to be called directly by the user.
 }

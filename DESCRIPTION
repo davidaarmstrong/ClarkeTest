@@ -11,10 +11,10 @@ Description: Implementation of Clarke's distribution-free test of
   lm(), glm() ('binomial', 'poisson', 'negative binomial' links), 
   polr() ('MASS'), clm() ('ordinal'), and multinom() ('nnet').  
   For more information on the test, see Clarke (2007) 
-  <doi: 10.1093/pan/mpm004>. 
+  <doi:10.1093/pan/mpm004>. 
 Depends: R (>= 3.5.0)
 Suggests: MASS, ordinal, nnet
 License: GPL (>=2)
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0

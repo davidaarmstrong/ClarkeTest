@@ -31,5 +31,13 @@ nparams(model)
 A scalar giving the number of parameters estimated in the model.
 }
 \description{
-Find number of parameters in model
+Finds the number of parameters that were estimated in each
+model.
+}
+\details{
+The function funds the number of parameters generally by counting
+the number of estimated parameters in the model's output.
+
+For the purposes of the \code{clarke_test} function, the \code{nparams}
+functions are not intended to be called directly by the user.
 }

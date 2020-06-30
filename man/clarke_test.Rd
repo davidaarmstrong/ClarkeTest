@@ -19,7 +19,7 @@ whose dependent variable is the same as that of \code{model1}}
 \value{
 Typical use will be to run the function interactively and examine
 the printed output.  The functions return an object of class
-\code{"nonnest.test"}, which is a list containing: \describe{
+\code{nonnest.test}, which is a list containing: \describe{
 \item{\code{stat}}{The test statistic}
 \item{\code{level}}{Significance level for the test}
 \item{\code{digits}}{Number of digits to print}

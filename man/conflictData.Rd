@@ -4,7 +4,8 @@
 \name{conflictData}
 \alias{conflictData}
 \title{Conflict Data}
-\format{A data frame with 4381 rows and 9 variables
+\format{
+A data frame with 4381 rows and 9 variables
 \describe{
   \item{GWNo}{ Gleditsch and Ward country number}
   \item{Year}{ year}
@@ -16,7 +17,8 @@
   \item{riots}{ Number of riots in each country-yar}
   \item{pop}{ Population in country (in thousands)}
   \item{rgdpna_pc}{ PWT measure of GDP/capita}
-}}
+}
+}
 \usage{
 conflictData
 }

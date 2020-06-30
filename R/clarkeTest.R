@@ -1,4 +1,5 @@
 ##' Print non-nested test results
+##' @description Prints results of the \code{clarke_test} function.
 ##'
 ##' @param x A result from the `nonnest` function
 ##' @param digits Number of digits to print in the output
@@ -6,7 +7,10 @@
 ##'
 ##' @rdname print
 ##' @export
+##' @return Printed output that summarises the results of the
+##' \code{clarke_test} function.
 ##' @method print nonnest.test
+##'
 
 print.nonnest.test <- function(x, digits = x$digits, ...)
 {
@@ -76,7 +80,7 @@ print.nonnest.test <- function(x, digits = x$digits, ...)
 ##' Nonnested Hypotheses."  \emph{Political Analysis} 15(3): 347--363.
 ##' @return Typical use will be to run the function interactively and examine
 ##' the printed output.  The functions return an object of class
-##' \code{"nonnest.test"}, which is a list containing: \describe{
+##' \code{nonnest.test}, which is a list containing: \describe{
 ##' \item{\code{stat}}{The test statistic}
 ##' \item{\code{level}}{Significance level for the test}
 ##' \item{\code{digits}}{Number of digits to print}
@@ -88,6 +92,18 @@ print.nonnest.test <- function(x, digits = x$digits, ...)
 ##' fitted in \code{model1} and \code{model2} respectively}
 ##' \item{\code{nobs}}{Number of observations of the dependent variable being
 ##' modeled}}
+##' @value An object of class \code{nonnest.test} with the following values:
+##' \describe{
+##' \item{stat}{The number of times model 1 is better than model 2}
+##' \item{test}{Will always be "clarke".}
+##' \item{level}{The chosen confidence level for the test}
+##' \item{digits}{The number of digits to print}
+##' \item{loglik1}{Individual log-likelihoods for model 1}
+##' \item{loglik2}{Individual log-likelihoods for model 2}
+##' \item{nparams}{A vector giving the number of parameters in models 1 and 2,
+##' respectively}
+##' \item{nobs}{Number of observations in the model}
+##' }
 ##'
 ##' @examples
 ##' data(conflictData)
@@ -196,8 +212,20 @@ nonnest <- function(model1, model2){
     if (nobs(model2) != n)
       stop("model1 and model2 have different numbers of observations")
 
-    y1 <- model.response(model.frame(model1))
-    y2 <- model.response(model.frame(model2))
+    y1 <- try(model.response(model.frame(model1)))
+    if(inherits(y1, "try-error")){
+      y1 <- model1$y
+      if(is.null(y1)){
+        stop("must be able to extract y with model.response(model.frame(obj)) or obj$y\n")
+      }
+    }
+    y2 <- try(model.response(model.frame(model1)))
+    if(inherits(y2, "try-error")){
+      y2 <- model1$y
+      if(is.null(y2)){
+        stop("must be able to extract y with model.response(model.frame(obj)) or obj$y\n")
+      }
+    }
 
     ## check for equality of dependent variables
     if (!all.equal(y1, y2, check.attributes = FALSE))
@@ -244,6 +272,10 @@ nonnest <- function(model1, model2){
 ##' methods for both \code{indivLogLiks} and \code{nparams}
 ##' that would get called by the generic function.
 ##'
+##' For the purposes of the \code{clarke_test} function, the \code{indivLogLiks}
+##' functions are not intended to be called directly by the user.
+##'
+##' @return A vector of individual log-likelihood values for the model.
 ##'
 ##' @rdname indivLogLiks
 ##' @export
@@ -279,6 +311,15 @@ indivLogLiks.lm <- function(model){
   ans <- ll_fun.gaussian(model)
   return(ans)
 }
+
+##' @rdname indivLogLiks
+##' @export
+##' @method indivLogLiks orlm
+indivLogLiks.orlm <- function(model){
+  ans <- ll_fun.orlm(model)
+  return(ans)
+}
+
 
 ##' @rdname indivLogLiks
 ##' @export
@@ -353,10 +394,26 @@ ll_fun.gaussian <- function(model){
   log(probs)
 }
 
+ll_fun.orlm <- function(obj){
+  y <- obj$y
+  res <- obj$residuals
+  sigma <- c(var(res) * (length(y) - 1)/(length(y) - length(obj$b.restr)))
+  dnorm(y, obj$fitted.values, sqrt(sigma), log=TRUE)
+}
+
+
 
 ##' Find number of parameters in model
 ##'
+##' @description Finds the number of parameters that were estimated in each
+##' model.
 ##' @param model A statistical model object.
+##'
+##' @details The function funds the number of parameters generally by counting
+##' the number of estimated parameters in the model's output.
+##'
+##' For the purposes of the \code{clarke_test} function, the \code{nparams}
+##' functions are not intended to be called directly by the user.
 ##'
 ##' @return A scalar giving the number of parameters estimated in the model.
 ##' @rdname nparams
@@ -379,6 +436,10 @@ nparams.glm <- function(model){
 ##' @export
 nparams.lm <- function(model){
  sum(hatvalues(model))
+}
+
+nparams.orlm <- function(model){
+  length(model$b.restr)
 }
 
 ##' @rdname nparams
@@ -416,10 +477,18 @@ nparams.negbin <- function(model){
   length(coef(model)) + 1
 }
 
+##' @export
 ##' @method nobs multinom
 nobs.multinom <- function(object, ...){
   length(object$weights)
 }
+
+##' @export
+##' @method nobs orlm
+nobs.orlm <- function(object, ...){
+  length(object$y)
+}
+
 
 # ##' @method nobs mlogit
 # nobs.mlogit <- function(object, ...){
