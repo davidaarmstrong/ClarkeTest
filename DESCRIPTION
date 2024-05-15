@@ -1,10 +1,10 @@
 Package: clarkeTest
 Type: Package
 Title: Distribution-Free Tests of Non-Nested Models
-Version: 0.1.0
-Authors@R: c(person("Dave", "Armstrong", email="dave@quantoid.net", 
+Version: 0.2.0
+Authors@R: c(person("Dave", "Armstrong", email="davearmstrong.ps@gmail.com", 
   role=c("aut", "cre")), 
-  person("Brenton", "Kenkel", email="brenton.kenkel@@gmail.com", 
+  person("Brenton", "Kenkel", email="brenton.kenkel@gmail.com", 
   role=c("aut")))
 Description: Implementation of Clarke's distribution-free test of
   non-nested models.  Currently supported model functions are: 
@@ -17,4 +17,4 @@ Suggests: MASS, ordinal, nnet
 License: GPL (>=2)
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.0
+RoxygenNote: 7.3.1

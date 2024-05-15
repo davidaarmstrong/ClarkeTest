@@ -4,6 +4,7 @@
 \alias{nparams}
 \alias{nparams.glm}
 \alias{nparams.lm}
+\alias{nparams.orlm}
 \alias{nparams.polr}
 \alias{nparams.clm}
 \alias{nparams.multinom}
@@ -15,6 +16,8 @@ nparams(model)
 \method{nparams}{glm}(model)
 
 \method{nparams}{lm}(model)
+
+\method{nparams}{orlm}(model)
 
 \method{nparams}{polr}(model)
 

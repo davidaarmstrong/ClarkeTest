@@ -31,6 +31,19 @@ the printed output.  The functions return an object of class
 fitted in \code{model1} and \code{model2} respectively}
 \item{\code{nobs}}{Number of observations of the dependent variable being
 modeled}}
+
+An object of class \code{nonnest.test} with the following values:
+\describe{
+\item{stat}{The number of times model 1 is better than model 2}
+\item{test}{Will always be "clarke".}
+\item{level}{The chosen confidence level for the test}
+\item{digits}{The number of digits to print}
+\item{loglik1}{Individual log-likelihoods for model 1}
+\item{loglik2}{Individual log-likelihoods for model 2}
+\item{nparams}{A vector giving the number of parameters in models 1 and 2,
+respectively}
+\item{nobs}{Number of observations in the model}
+}
 }
 \description{
 `clarke_test` returns results from Kevin Clarke's distribution-free test

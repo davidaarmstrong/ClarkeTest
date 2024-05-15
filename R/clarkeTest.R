@@ -92,7 +92,7 @@ print.nonnest.test <- function(x, digits = x$digits, ...)
 ##' fitted in \code{model1} and \code{model2} respectively}
 ##' \item{\code{nobs}}{Number of observations of the dependent variable being
 ##' modeled}}
-##' @value An object of class \code{nonnest.test} with the following values:
+##' @returns An object of class \code{nonnest.test} with the following values:
 ##' \describe{
 ##' \item{stat}{The number of times model 1 is better than model 2}
 ##' \item{test}{Will always be "clarke".}
@@ -438,6 +438,9 @@ nparams.lm <- function(model){
  sum(hatvalues(model))
 }
 
+##' @rdname nparams
+##' @method nparams orlm
+##' @export
 nparams.orlm <- function(model){
   length(model$b.restr)
 }
